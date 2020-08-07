@@ -106,13 +106,11 @@ def json_load(filename):
 
 def main():
   auth = json_load(os.path.dirname(os.path.realpath(__file__)) + '/conf/test_auth.json')
-  conf = json_load(os.path.dirname(os.path.realpath(__file__)) + '/conf/test_conf.json')
 
   s3rsync = S3RSync(src_keys=auth['src_s3_keys'], src_endpoint=auth['src_endpoint'], dest_keys=auth['dest_s3_keys'], dest_endpoint=auth['dest_endpoint'])
 
   filename = os.path.dirname(os.path.realpath(__file__)) + '/data/Snark.txt'
-  s3rsync.cat_obj_mytardis(key = filename, bucket = 'mytardis', prefix='Write_Test')
-  #  s3rsync.copy_file_mytardis(filename = filename, bucket = 'mytardis', prefix='Write_Test')
+  s3rsync.cat_obj_mytardis(key = filename, bucket = auth['bucket'], prefix='Write_Test')
   
 if __name__ == "__main__":
   main()

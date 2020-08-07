@@ -30,7 +30,7 @@ def main():
       config=None
   )
 
-  src_connection.delete_object(Bucket='mytardis', Key='Write_Test/Snark.txt')
+  src_connection.delete_object(Bucket= auth['bucket'], Key='Write_Test/Snark.txt')
 
 if __name__ == "__main__":
   main()
